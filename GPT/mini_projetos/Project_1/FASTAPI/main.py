@@ -40,7 +40,6 @@ def listar_funcionarios():
 
 
 class FuncionarioCreate(BaseModel):
-    id: int
     nome: str
     setor: str
 
@@ -64,4 +63,18 @@ def atualizar_funcionario(id_funcionario: int, dados: FuncionarioCreate):
     funcionario = buscar_funcionario(id_funcionario)
     if funcionario is None:
         raise HTTPException(status_code=404, detail="Funcionário não encontrado")
-    
+    funcionario["nome"] = dados.nome
+    funcionario["setor"] = dados.setor
+    return funcionario
+
+@app.delete("/funcionarios/{id_funcionario}")
+def excluir_funcionario(id_funcioario: int):
+    funcionario = buscar_funcionario(id_funcionario)
+
+    if funcionario is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Funcionário não encontrado"
+        )
+    funcionarios.remove(funcionario)
+    return {"mensagem": "Funcionário excluído com sucesso"}
