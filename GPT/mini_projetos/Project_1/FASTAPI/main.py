@@ -58,7 +58,7 @@ def criar_funcionario(dados: FuncionarioCreate):
     funcionarios.append(novo_funcionario)
     return novo_funcionario
 
-@app.put("/funcionarios/{id_funcionarios}")
+@app.put("/funcionarios/{id_funcionario}")
 def atualizar_funcionario(id_funcionario: int, dados: FuncionarioCreate):
     funcionario = buscar_funcionario(id_funcionario)
     if funcionario is None:
@@ -68,7 +68,7 @@ def atualizar_funcionario(id_funcionario: int, dados: FuncionarioCreate):
     return funcionario
 
 @app.delete("/funcionarios/{id_funcionario}")
-def excluir_funcionario(id_funcioario: int):
+def excluir_funcionario(id_funcionario: int):
     funcionario = buscar_funcionario(id_funcionario)
 
     if funcionario is None:
@@ -76,5 +76,7 @@ def excluir_funcionario(id_funcioario: int):
             status_code=404,
             detail="Funcionário não encontrado"
         )
+
     funcionarios.remove(funcionario)
+
     return {"mensagem": "Funcionário excluído com sucesso"}
