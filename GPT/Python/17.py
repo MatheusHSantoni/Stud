@@ -8,4 +8,10 @@ def calcular_media(lista):
     soma = 0
 
     for n in lista:
-        
+        soma += n
+
+    calculo = soma / len(lista)
+    return calculo
+
+print(calcular_media(numeros))
+print(calcular_media(numeros1))
