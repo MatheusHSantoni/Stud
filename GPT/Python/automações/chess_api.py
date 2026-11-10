@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""Baixa e consolida partidas públicas do Chess.com em formato PGN."""
-
 import argparse
 import json
 import re
